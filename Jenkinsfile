@@ -14,7 +14,7 @@ pipeline {
         stage('Cloning Git') {
             steps {
                 git([url: 'https://github.com/pdisec2122/project-movie-app', 
-                    branch: 'main'])
+                    branch: 'master'])
 
             }
         }
@@ -47,5 +47,5 @@ pipeline {
             echo "Finished"
         }
     }
-    
+
 }
