@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "id": 5,
+      "creationDate": "2022-06-20"
+    },
+    {
+      "id": 4,
+      "creationDate": "2022-06-19"
+    },
+    {
+      "id": 3,
+      "creationDate": "2022-06-18"
+    },
+    {
+      "id": 2,
+      "creationDate": "2022-06-17"
+    },
+    {
+      "id": 1,
+      "creationDate": "2022-06-16"
+    }
+  ]
+}
