@@ -1,4 +1,6 @@
-agent any
+pipeline {
+    
+    agent any
 
     environment {
         imagename = "pdisec2122/project-movie-app"
