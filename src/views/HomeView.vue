@@ -75,7 +75,7 @@ export default {
       let response;
 
       if (this.currentHistoric) {
-        let apiInfographicsUrl = process.env.VUE_APP_API_BASE_URL + 'infographics/' + this.currentHistoric + '/movies'
+        let apiInfographicsUrl = process.env.VUE_APP_API_BASE_URL + 'infographics/' + this.currentHistoric + '/movies?page=1&size=20'
         response = await fetch(apiInfographicsUrl).catch(error => {
           console.log('There was an error!', error);
           fetchApiFail = true;
