@@ -9,7 +9,7 @@
         <div class="movie-info">
           <h5 class="ranking">{{ index + 1 }}</h5>
           <div class="movie-data">
-            <router-link :to="{name: 'movie', params: {id: movie.id, type: movie.media_type}}"><h2 class="movie-name">{{ getMovieName(movie) }}</h2></router-link>
+            <router-link :to="{name: 'movie', params: {id: movie.id}"><h2 class="movie-name">{{ getMovieName(movie) }}</h2></router-link>
             <h4 class="movie-vote-count"><b>{{ movie.vote_count }} votes</b></h4>
             <h2 class="movie-avg">{{ movie.vote_average }} <br>Score</h2>
           </div>
@@ -101,8 +101,8 @@ export default {
     },
     getMovieName (movie) {
       movie = JSON.parse(JSON.stringify(movie))
-      if (typeof movie.name !== 'undefined') { return movie.name }
-      if (typeof movie.original_name !== 'undefined') { return movie.original_name } else { return movie.original_title }
+      if (movie.name) { return movie.name }
+      if (movie.original_name) { return movie.original_name } else { return movie.original_title }
     },
     getHistoric: async function () {
       let fetchApiFail = false;

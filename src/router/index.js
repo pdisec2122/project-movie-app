@@ -21,7 +21,7 @@ const routes = [
     component: TrendingHistoric
   },
   {
-    path: '/movie/:id/:type',
+    path: '/movie/:id',
     name: 'movie',
     component: MovieDetail
   }
