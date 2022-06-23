@@ -32,7 +32,6 @@ export default {
   name: "MovieDetail",
   data () {
     return {
-      mediaType: null,
       mediaId: null,
       movie: null,
       backgroundCover: null
@@ -40,12 +39,11 @@ export default {
   },
   mounted() {
     this.mediaId = this.$route.params.id
-    this.mediaType = this.$route.params.type
     this.getMovieData()
   },
   methods: {
     getMovieData: async function () {
-      let url = process.env.VUE_APP_TMDB_BASE_URL + this.mediaType + '/' + this.mediaId + '?api_key=' + process.env.VUE_APP_TMDB_API_KEY
+      let url = process.env.VUE_APP_TMDB_BASE_URL + 'movie/' + this.mediaId + '?api_key=' + process.env.VUE_APP_TMDB_API_KEY
       const response = await fetch(url)
       this.movie = await response.json()
       this.backgroundCover = this.getBackdropPath(this.movie.backdrop_path)

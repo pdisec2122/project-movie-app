@@ -38,12 +38,12 @@
           <div class="col-6 col-md-4" v-for="(movie, index) in movies" :key="index">
             <div class="product">
               <figure class="product-image">
-                <router-link :to="{name: 'movie', params: {id: movie.id, type: movie.media_type}}">
+                <router-link :to="{name: 'movie', params: {id: movie.id}}">
                   <img :src="getPosterPath(movie.poster_path)" alt="Image" style="width: 100%;" loading="lazy">
                 </router-link>
               </figure>
               <div class="product-meta">
-                <router-link :to="{name: 'movie', params: {id: movie.id, type: movie.media_type}}">
+                <router-link :to="{name: 'movie', params: {id: movie.id}}">
                   <h3 class="product-title">{{ getMovieName(movie) }}</h3>
                 </router-link>
                 <p class="movie-avg"><b>Movie score: </b>{{parseInt(movie.vote_average * 10)}}%</p>
@@ -92,7 +92,7 @@ export default {
         let response;
 
         if (this.currentHistoric) {
-          let apiInfographicsUrl = process.env.VUE_APP_API_BASE_URL + 'infographics/' + this.currentHistoric + '/movies?page=' + i
+          let apiInfographicsUrl = process.env.VUE_APP_API_BASE_URL + 'infographics/' + this.currentHistoric + '/movies?page=' + i + '&size=20'
           response = await fetch(apiInfographicsUrl).catch(error => {
             console.log('There was an error!', error);
             fetchApiFail = true;
@@ -103,7 +103,7 @@ export default {
           response = await fetch(process.env.VUE_APP_TMDB_TRENDING_URL + process.env.VUE_APP_TMDB_API_KEY + '&page=' + i)
 
         let data = await response.json()
-        this.movies.push(JSON.parse(JSON.stringify(data)).results)
+        this.movies.push(JSON.parse(JSON.stringify(data)))
         this.movies = this.movies.flat(1)
         this.movies = this.movies.sort((a, b) => a.vote_average < b.vote_average ? -1 : (a.vote_average > b.vote_average ? 1 : 0)).reverse()
       }
@@ -113,7 +113,16 @@ export default {
       this.getShowMoviesCount()
     },
     getHistoric: async function () {
-      const response = await fetch('/historic.json')
+      let fetchApiFail = false;
+      let apiInfographicsUrl = process.env.VUE_APP_API_BASE_URL + 'infographics'
+      let response = await fetch(apiInfographicsUrl).catch(error => {
+        console.log('There was an error!', error);
+        fetchApiFail = true;
+      })
+
+      if(fetchApiFail || response.status === 404)
+        response = await fetch('/historic.json')
+
       const data = await response.json()
       this.historic = data
       this.currentHistoric = this.historic[0].id
