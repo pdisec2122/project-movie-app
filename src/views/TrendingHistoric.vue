@@ -73,7 +73,7 @@ export default {
       }).catch((error) => { console.log(error); });
     },
     removeTrendingItem (trendingId) {
-      let url = process.env.VUE_APP_API_BASE_URL + 'infographics/' + trendingId + '/delete'
+      let url = process.env.VUE_APP_API_BASE_URL + 'infographics/' + trendingId
       let response = fetch(url,{method: "DELETE"}).then((result) => {
         if (result.status !== 200) { throw new Error("Bad Server Response"); }
         return result.text();

@@ -89,12 +89,15 @@ export default {
       for (let i = 1; i <= 5; i++)
       {
         let fetchApiFail = false;
-        let apiInfographicsUrl = process.env.VUE_APP_API_BASE_URL + 'infographics/' + this.historic[this.currentHistoric - 1].id + '/movies?page=' + i
-        let response = await fetch(apiInfographicsUrl).catch(error => {
-          console.log('There was an error!', error);
-          fetchApiFail = true;
-        })
 
+        if (this.currentHistoric) {
+          let apiInfographicsUrl = process.env.VUE_APP_API_BASE_URL + 'infographics/' + this.currentHistoric + '/movies?page=' + i
+          let response = await fetch(apiInfographicsUrl).catch(error => {
+            console.log('There was an error!', error);
+            fetchApiFail = true;
+          })
+        }
+        
         if(fetchApiFail || response.status === 404)
           response = await fetch(process.env.VUE_APP_TMDB_TRENDING_URL + process.env.VUE_APP_TMDB_API_KEY + '&page=' + i)
 

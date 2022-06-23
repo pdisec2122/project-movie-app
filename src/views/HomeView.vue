@@ -72,11 +72,14 @@ export default {
   methods: {
     getMovies: async function () {
       let fetchApiFail = false;
-      let apiInfographicsUrl = process.env.VUE_APP_API_BASE_URL + 'infographics/' + this.historic[this.currentHistoric - 1].id + '/movies'
-      let response = await fetch(apiInfographicsUrl).catch(error => {
-        console.log('There was an error!', error);
-        fetchApiFail = true;
-      })
+
+      if (this.currentHistoric) {
+        let apiInfographicsUrl = process.env.VUE_APP_API_BASE_URL + 'infographics/' + this.currentHistoric + '/movies'
+        let response = await fetch(apiInfographicsUrl).catch(error => {
+          console.log('There was an error!', error);
+          fetchApiFail = true;
+        })
+      }
 
       if(fetchApiFail || response.status === 404)
         response = await fetch('trending_' + this.historic[this.currentHistoric - 1].creationDate + '.json')
