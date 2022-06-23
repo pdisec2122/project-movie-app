@@ -9,7 +9,7 @@
         <div class="movie-info">
           <h5 class="ranking">{{ index + 1 }}</h5>
           <div class="movie-data">
-            <router-link :to="{name: 'movie', params: {id: movie.id}"><h2 class="movie-name">{{ getMovieName(movie) }}</h2></router-link>
+            <router-link :to="{name: 'movie', params: {id: movie.id}}"><h2 class="movie-name">{{ getMovieName(movie) }}</h2></router-link>
             <h4 class="movie-vote-count"><b>{{ movie.vote_count }} votes</b></h4>
             <h2 class="movie-avg">{{ movie.vote_average }} <br>Score</h2>
           </div>
@@ -41,7 +41,7 @@
       <tbody>
       <tr v-for="(movie, index) in otherMovies" :key="index">
         <td scope="row">{{ index + 11 }}</td>
-        <td><router-link :to="{name: 'movie', params: {id: movie.id, type: movie.media_type}}"><h2>{{ getMovieName(movie) }}</h2></router-link></td>
+        <td><router-link :to="{name: 'movie', params: {id: movie.id}}"><h2>{{ getMovieName(movie) }}</h2></router-link></td>
         <td>{{ movie.vote_count }}</td>
         <td class="d-flex align-items-baseline">
           <div class="progress">
