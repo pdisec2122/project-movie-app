@@ -116,7 +116,7 @@ export default {
         response = await fetch('/historic.json')
 
       const data = await response.json()
-      this.historic = data
+      this.historic = data.reverse()
       this.currentHistoric = this.historic[0].id
       await this.getMovies()
     },
