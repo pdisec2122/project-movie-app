@@ -72,10 +72,11 @@ export default {
   methods: {
     getMovies: async function () {
       let fetchApiFail = false;
+      let response;
 
       if (this.currentHistoric) {
         let apiInfographicsUrl = process.env.VUE_APP_API_BASE_URL + 'infographics/' + this.currentHistoric + '/movies'
-        let response = await fetch(apiInfographicsUrl).catch(error => {
+        response = await fetch(apiInfographicsUrl).catch(error => {
           console.log('There was an error!', error);
           fetchApiFail = true;
         })
@@ -115,7 +116,7 @@ export default {
         response = await fetch('/historic.json')
 
       const data = await response.json()
-      this.historic = data.results
+      this.historic = data
       this.currentHistoric = this.historic[0].id
       await this.getMovies()
     },

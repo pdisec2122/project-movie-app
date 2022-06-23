@@ -57,7 +57,7 @@ export default {
         response = await fetch('/historic.json')
 
       const data = await response.json()
-      this.historic = data.results
+      this.historic = data
     },
     getDateString (date) {
       let myDate = new Date(date)
