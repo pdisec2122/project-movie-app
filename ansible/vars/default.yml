@@ -1,0 +1,6 @@
+---
+default_user: lfilipevm
+default_container_name: project-movie-app
+default_container_image: pdisec2122/project-movie-app:latest
+# docker
+docker_network: moviefetchernetwork
