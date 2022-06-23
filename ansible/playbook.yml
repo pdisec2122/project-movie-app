@@ -44,7 +44,5 @@
       docker_container:
         name: "{{ default_container_name }}"
         image: "{{ default_container_image }}"
-        volumes:
-          - "{{playbook_dir}}/config/.env:/app/.env"
         ports:
           - "9090:8080"
