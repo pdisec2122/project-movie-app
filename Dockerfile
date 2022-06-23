@@ -2,6 +2,8 @@ FROM node:lts-alpine
 
 RUN npm install -g http-server
 
+RUN apk update && apk add bash
+
 RUN mkdir /app
 
 WORKDIR /app
