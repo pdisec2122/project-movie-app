@@ -64,10 +64,22 @@ export default {
       return myDate.toDateString()
     },
     updateList () {
-      alert('Updating ...')
+      let url = process.env.VUE_APP_API_BASE_URL + 'infographics/create'
+      let response = fetch(url,{method: "POST"}).then((result) => {
+        if (result.status !== 200) { throw new Error("Bad Server Response"); }
+        return result.text();
+      }).then((response) => {
+        this.getHistoric()
+      }).catch((error) => { console.log(error); });
     },
     removeTrendingItem (trendingId) {
-      alert(trendingId)
+      let url = process.env.VUE_APP_API_BASE_URL + 'infographics/' + trendingId + '/delete'
+      let response = fetch(url,{method: "DELETE"}).then((result) => {
+        if (result.status !== 200) { throw new Error("Bad Server Response"); }
+        return result.text();
+      }).then((response) => {
+        this.getHistoric()
+      }).catch((error) => { console.log(error); });
     }
   }
 }
